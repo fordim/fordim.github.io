@@ -1,0 +1,246 @@
+body{
+    background:rgba(187, 240, 237, 0.733);
+}
+
+#wrapper{
+    width:1250px;
+    height:300px;
+    background-color:grey;
+    margin:0 auto;
+}
+
+#hat{
+   height:90px;
+   background-color:#FFFFFF; 
+}
+
+#aditti{
+    margin-left:140px;
+    float:left;
+}
+
+#box{
+    float:right;
+    margin-right:140px;
+}
+
+#searchImg{
+    float:right;
+
+}
+
+#search{
+    position:relative;
+    top:25px;
+    height:32px;
+    margin:0 428px 0 415px;
+    border: 1px solid #cccccc;
+    font:16px Verdana;
+ 
+}
+.input{
+    color:#A1A1A1;
+}
+#topsearh{
+    width:372px;
+    height:30px;
+    border:none;
+}
+
+#header{
+    height:36px;
+    background-color:#4CCFC1;
+}
+
+#nav{
+    float:left;
+}
+
+ul>li{
+    float: left;
+    font-size:18px;
+    padding:0px 10px;
+    border-right:2px solid #FFFFFF;
+}
+
+#lilast{
+    border:none;
+}
+
+ul{
+    margin:10px 145px;
+}
+
+li>a{
+    color: #FFFFFF;
+    font-family:arial;
+    text-decoration:none;
+    font-stretch:ultra-condensed;
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+#mainprodact{
+    background-image:url(../img/background.png);
+    background-repeat:repeat;
+    height:445px;
+}
+
+#shirtmain{
+    float:left;
+    margin-left:200px;
+    margin-top:65px;
+}
+
+#content{
+    margin-left:580px;
+    padding-top:65px;
+    width:440px;
+    height:215px;
+    color: #FFFFFF;
+    text-decoration:none;
+    font-size:20px;
+}
+
+#caption{
+    font-size:55px;
+    font-family:Arial;
+    font-stretch:ultra-condensed;
+    font-weight:800;
+}
+
+#contenttext{
+    padding-top:20px;
+    padding-bottom:20px;
+    font-family:Arial;
+    font-stretch:semi-condensed;
+    font-weight:100;
+    line-height:30px;
+}
+
+#secondprodact{
+    background-color:#FFFFFF;
+    height:188px;
+}
+
+#pointerL{
+    float:left;
+    width:130px;
+    height:188px;
+    padding-top:40px;
+    padding-left:40px;
+}
+
+#pointerR{
+    float:right;
+    width:130px;
+    height:188px;
+    padding-top:40px;
+    padding-left:40px;
+}
+
+#middlecontent{
+    margin-left:130px;
+    margin-right:130px;
+    height:188px;
+}
+
+#middleprodact{
+    height:188px;
+    margin:0px;
+    padding-top:10px;
+}
+
+#shirt2{
+    border:0.5px solid #E7E7E7;
+    border-top:none;
+    border-bottom:none;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+#featuredP{
+    height:65px;
+    background-image:url(../img/background.png);
+    background-repeat:repeat;
+    padding-left:180px;
+    padding-top:15px;
+    font-size:32px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:#ffffff;
+    font-stretch:ultra-condensed;
+}
+
+#featuredcontent{
+    height:685px;
+    background-color:#FFFFFF;
+    padding:44px 140px 65px 125px;
+}
+
+#featuredcontent li{
+    border:0.5px solid #E7E7E7;
+    margin-left:50px;
+    border-bottom:5px solid #3ABE91;
+}
+
+#featuredtableT{
+    height:300px;
+    margin:0px;
+}
+
+#featuredtableB{
+    height:300px;
+    margin:0px;
+}
+
+#list{
+    height:340px;
+    background-color:#4CCFC1;
+    width:1250px;
+    padding-left:170px;
+    padding-right:100px;
+    color:#FFFFFF;
+    font-weight:100;
+}
+
+#footer{
+    height:45px;
+    background-color:#2DA89B;
+    text-align:center;
+    padding-top:15px;
+    color:#FFFFFF;
+    font-size:18px;
+    padding-left:125px;
+    padding-right:125px;
+}
+
+#clear{
+    clear:both;
+}
+
+#columnT{
+    margin:0px;
+}
+
+#column{
+    width:225px;
+    float:left;
+}
+
+#columnT>#toplist{
+    font-weight:700;
+    padding-top:40px;
+    margin-bottom:20px;
+    font-size:22px;
+    font-family:Arial;
+    font-stretch:ultra-condensed;
+}
+
+#columnT>li{
+    float:none;
+    border:none;
+    width:225px;
+    font-family:arial;
+    padding-bottom:9px;
+    font-size:15px;
+}

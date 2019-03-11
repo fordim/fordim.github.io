@@ -49,12 +49,9 @@ main{
     height:98px;
     width:98px;
     border:1px solid black;
+    text-align:center;
 }
 
-.gameBlockLetter{
-    text-align:center;
-    margin:0px;
-}
 
 footer{
     height:50px;

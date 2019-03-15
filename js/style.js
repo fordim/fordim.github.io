@@ -1,9 +1,9 @@
 
-
+//массив игрового поля
 var gameTable = ['X', null,'X','X','O','X','X',null,'X'];
 
+//рисование в блоках
 var draw = function(state){
-    //to do (Завернуть в цикл)
     var gameBlocks = document.getElementsByClassName('gameBlock');
 
     for ( var i = 0; i < gameBlocks.length; i++){
@@ -11,78 +11,70 @@ var draw = function(state){
     }
 };
 
-
+//Функция которая загружается вместе с страницей
 var onPageLoaded = function(){
 
-    var myElement = document.getElementById('myspan');
-    myElement.innerText = 'newText';
 
-//    updateCards();
-
-    var gameBlocks = document.getElementsByClassName('gameBlock');
-
-    for (var i = 0; i < gameBlocks.length; i++){
-        gameBlocks[i].onclick = function(e){
-            e.target.innerText = 'X';
-            console.log(e);
-            //Поменять gameTable в соответствии куда я попал (понять что за ID от 0 до 9) и туда вставить значение (X O)
-
-            //draw(gameTable);
-        };
-    }
+    //1. разобраться с ним
+    var gameBlocks = document.getElementById('gameBlocks');
+    gameBlocks.onclick = function (e) {
+        var index = Array.from(e.target.parentElement.children).indexOf(e.target);
+        gameTable[index] = '?';
+        draw(gameTable);
+    };
 
     draw(gameTable);
 
+
+    // New game - очистка поля
+    var clearBoard = document.getElementsByClassName('resetGame');
+    console.log(clearBoard);
+
+    clearBoard[0].onclick = function(event){
+      event.preventDefault(); //убирает с кнопки стандартное поведение
+      for (var j = 0; j < gameTable.length; j++){
+          gameTable[j] = '';
+          draw(gameTable);
+      }
+    };
+
+
+    //Объявляем игроков
+    var playerOne = {
+        name: 'John',
+        points: 0
+    };
+    var playerTwo = {
+        name: 'Donald',
+        points: 0
+    };
+
+    //Имитация игры
+    var runGame = function(){
+      for (var i = 0; i < gameTable.length; i++){
+          if((i % 2) == 0 || i === 0){
+              gameBlocks.onclick(i);
+              gameTable[i] = 'X';
+              draw(gameTable);
+          } else {
+              gameBlocks.onclick(i);
+              gameTable[i] = 'O';
+              draw(gameTable);
+          }
+      }
+
+    };
+
+
+
+    /*var myElement = document.getElementById('myspan');
+    myElement.innerText = 'My First Game';*/
+
 };
-
-
-/*
-var updateCards = function (){
-    var elements = document.querySelectorAll('.gameBlockLetter');
-
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-        element.innerText = 'O';
-
-    }
-    console.log(element);
-};
-*/
-
 
 document.addEventListener('DOMContentLoaded', onPageLoaded);
 
-
-/*
-var a = function(number1, number2){
-    var summary = number1 * number2;
-    return summary
-};
-
-a(2,3);
-
-
-function a(number1){
-    var currentSum = number1;
-
-    function f(number2){
-        currentSum *= number2;
-        return f;
-    }
-
-    f.toString = function(){
-        return currentSum;
-    };
-
-    return f;
-}
-
-a(2)(3);
-
-
-function multi(a) {
-  return function(b) {
-  	return a * b;
-  }
-}
-*/
+//2. разобраться с замыканием и прошлым кодом
+//3. По нажатию на кнопку "Новая игра" - поле обнуляется.
+//4. имитация игры 2-мя людьми
+//5.

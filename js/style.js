@@ -1,11 +1,8 @@
+var PLAYER_ONE = 'Крестик'; //объеявление константы
+var PLAYER_TWO = 'Нолик';
 
-//массив игрового поля
-var gameTable = ['','','','','','','','',''];
-var PLAYER_ONE = 'playerOne'; //объеявление константы
-var PLAYER_TWO = 'playerTwo';
-
+var gameTable = ['','','','','','','','','']; //массив игрового поля
 var actionPlayer = PLAYER_ONE;
-
 
 //рисование в блоках
 var draw = function(state){
@@ -16,110 +13,125 @@ var draw = function(state){
     }
 };
 
-
 //Функция которая загружается вместе с страницей
 var onPageLoaded = function(){
-
-
-    //1. разобраться с ним
+    //TODO: разобраться с ним
     var gameBlocks = document.getElementById('gameBlocks');
     gameBlocks.onclick = function (e) {
         var index = Array.from(e.target.parentElement.children).indexOf(e.target);
-        if (gameTable[index] === ''){
-            if (actionPlayer === PLAYER_ONE){
-                gameTable[index] = 'X';
-                actionPlayer = PLAYER_TWO;
-            } else {
-                gameTable[index] = 'O';
-                actionPlayer = PLAYER_ONE;
-            }
-        } else {
-            alert('Поле уже занято!');
+
+        //FIXME: 1-й способ который был придуман
+        // if (gameTable[index] === ''){
+        //     if (actionPlayer === PLAYER_ONE){
+        //         gameTable[index] = 'X';
+        //         actionPlayer = PLAYER_TWO;
+        //     } else {
+        //         gameTable[index] = 'O';
+        //         actionPlayer = PLAYER_ONE;
+        //     }
+        // } else {
+        //     alert('Поле уже занято!');
+        // }
+
+        if (gameTable[index] !== ''){
+            return alert('Поле уже занято!');
         }
+        var playerSymbol = actionPlayer === PLAYER_ONE ? 'X' : 'O';
+        gameTable[index] = playerSymbol;
 
-
-        // gameTable[index] = '?';
         draw(gameTable);
 
-
         // проверка на победителя
-        var b = victory();
-        if (b === 'winnerX'){
-            if (confirm('Победил игрок игравщий за Крестики. Хотите начать новую игру?')){
-                ResetBoard(event);
+        // var b = victory(playerSymbol);
+        // if (b === PLAYER_ONE){
+        //     if (confirm('Победил игрок игравщий за Крестики. Хотите начать новую игру?')){
+        //         return resetBoard();
+        //     } else {
+        //         return console.log('Игрок отказался начать новую игру');
+        //     }
+        // } if (b === PLAYER_TWO){
+        //     if (confirm('Победил игрок игравщий за Нолики. Хотите начать новую игру?')){
+        //         return resetBoard();
+        //     } else {
+        //         return console.log('Игрок отказался начать новую игру');
+        //     }
+        // }
+
+        if(victory(playerSymbol)){
+            if (confirm('Победил игрок игравший за: ' + actionPlayer + '. Хотите начать новую игру?')){
+                return resetBoard();
             } else {
-                console.log('Игрок отказался начать новую игру');
-            }
-        } if (b === 'winnerO'){
-            if (confirm('Победил игрок игравщий за Нолики. Хотите начать новую игру?')){
-                ResetBoard(event);
-            } else {
-                console.log('Игрок отказался начать новую игру');
+                return console.log('Игрок отказался начать новую игру');
             }
         }
 
-
-        // проверка на ничью
-        var a = isGameEnded();
-        if (a === true){ //на true проверять не обязательно
+        // проверка на ничия
+        if (isGameEnded()){ //на true проверять не обязательно
             if (confirm('Ничья, все поля заполнены. Хотите начать новую игру?')){
-                ResetBoard(event);
+                return resetBoard();
             } else {
-                console.log('Игрок отказался начать новую игру');
+                return console.log('Игрок отказался начать новую игру');
             }
         }
 
-
+        actionPlayer = actionPlayer === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
     };
-
-
-    //draw(gameTable);
-
 
     var isGameEnded = function (){
         return gameTable.every(function(element, index, array){
             return element !== '';
         })
     };
-
-
-    // ES6 вариант arrow-function
+    //TODO: ES6 вариант arrow-function
     //const isGameEnded = () => gameTable.every(item => item !== '');
 
-
-
-    // Определяем, что кто-то победил
-    var victory = function (){
-        if ((gameTable[0] === 'X' && gameTable[1] === 'X' && gameTable[2] === 'X') ||
-            (gameTable[3] === 'X' && gameTable[4] === 'X' && gameTable[5] === 'X') ||
-            (gameTable[6] === 'X' && gameTable[7] === 'X' && gameTable[8] === 'X') ||
-            (gameTable[0] === 'X' && gameTable[3] === 'X' && gameTable[6] === 'X') ||
-            (gameTable[1] === 'X' && gameTable[4] === 'X' && gameTable[7] === 'X') ||
-            (gameTable[2] === 'X' && gameTable[5] === 'X' && gameTable[8] === 'X') ||
-            (gameTable[0] === 'X' && gameTable[4] === 'X' && gameTable[8] === 'X') ||
-            (gameTable[2] === 'X' && gameTable[4] === 'X' && gameTable[6] === 'X')){
-            return 'winnerX';
-        } if ((gameTable[0] === 'O' && gameTable[1] === 'O' && gameTable[2] === 'O') ||
-        (gameTable[3] === 'O' && gameTable[4] === 'O' && gameTable[5] === 'O') ||
-        (gameTable[6] === 'O' && gameTable[7] === 'O' && gameTable[8] === 'O') ||
-        (gameTable[0] === 'O' && gameTable[3] === 'O' && gameTable[6] === 'O') ||
-        (gameTable[1] === 'O' && gameTable[4] === 'O' && gameTable[7] === 'O') ||
-        (gameTable[2] === 'O' && gameTable[5] === 'O' && gameTable[8] === 'O') ||
-        (gameTable[0] === 'O' && gameTable[4] === 'O' && gameTable[8] === 'O') ||
-        (gameTable[2] === 'O' && gameTable[4] === 'O' && gameTable[6] === 'O')){
-            return 'winnerO';
-        }
+    //Определяем, что кто-то победил
+    var victory = function (key){
+        return ((gameTable[0] === key && gameTable[1] === key && gameTable[2] === key) ||
+            (gameTable[3] === key && gameTable[4] === key && gameTable[5] === key) ||
+            (gameTable[6] === key && gameTable[7] === key && gameTable[8] === key) ||
+            (gameTable[0] === key && gameTable[3] === key && gameTable[6] === key) ||
+            (gameTable[1] === key && gameTable[4] === key && gameTable[7] === key) ||
+            (gameTable[2] === key && gameTable[5] === key && gameTable[8] === key) ||
+            (gameTable[0] === key && gameTable[4] === key && gameTable[8] === key) ||
+            (gameTable[2] === key && gameTable[4] === key && gameTable[6] === key))
     };
 
-
+    // TODO: 2-й способ, определяем при помощи перебора нового массива.
+    // var victory = function(playerSymbol){
+    //
+    //     var indices = [];
+    //     var idx = gameTable.indexOf(playerSymbol);
+    //     while (idx != -1) {
+    //         indices.push(idx);
+    //         idx = gameTable.indexOf(playerSymbol, idx + 1);
+    //     }
+    //
+    //     var victoryOptions = [
+    //         [0, 1, 2],
+    //         [3, 4, 5],
+    //         [6, 7, 8],
+    //         [0, 3, 6],
+    //         [1, 4, 7],
+    //         [2, 5, 8],
+    //         [0, 4, 8],
+    //         [2, 4, 6]
+    //     ];
+    //
+    //     return victoryOptions.some(item => {
+    //         return item.every(innerItem => {
+    //             return indices.includes(innerItem)
+    //         })
+    //     })
+    // };
 
     // New game - очистка поля
-    var clearBoard = document.getElementsByClassName('resetGame');
-    //console.log(clearBoard);
-
-    var ResetBoard = clearBoard[0].onclick = function(event){
+    document.getElementsByClassName('resetGame')[0].onclick = function(event){
         event.preventDefault(); //убирает с кнопки стандартное поведение
+        resetBoard();
+    };
 
+    var resetBoard = function () {
         //Сокращенный вариант заполнения всего массива
         gameTable = gameTable.fill('', 0, gameTable.length);
         draw(gameTable);
@@ -129,18 +141,9 @@ var onPageLoaded = function(){
            gameTable[j] = '';
            draw(gameTable);
         } */
-    };
-
-
+    }
 };
-
 
 document.addEventListener('DOMContentLoaded', onPageLoaded);
 
-
-
-//2. Как сократить код if
-//2.1 Как сделать одну проверку для Х и О
-//2.2 Как разбить и отличать потом победителей (если что-то изменится) или как сократить
-//3. Как сделать, что-бы сначало рисовало, а потом выводило победителя
-//4.
+//1. Как сделать, что-бы сначало рисовало, а потом выводило победителя

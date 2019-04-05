@@ -1,8 +1,10 @@
 var BLANK_GAME_TABLE = ['','','','','','','','',''];
 var LOG_GAME_TABLE = [];
+var HISTORY_OF_GAME = [];
 
 var gameTable = BLANK_GAME_TABLE.slice(0);
 var logBlock = LOG_GAME_TABLE.slice(0);
+var stepHistory = HISTORY_OF_GAME.slice(0);
 var actionPlayer = true;
 
 //РИСОВАНИЕ В БЛОКАХ
@@ -34,12 +36,28 @@ var resetAndDrawBoard = function () {
     logBlock = LOG_GAME_TABLE.slice(0); //Чистим поле с логами
     draw(gameTable);
     clearLog(logBlock);
+    stepHistory.length = 0; //Очистка массива
 };
 
 //ОТМЕНЯЕТ ПОСЛЕДНИЙ ХОД
-stepBackAndDraw =function(){
+stepBackAndDraw = function(){
     logBlock.splice(-1,1);
-    writeLog(logBlock);
+    stepHistory.splice(-1,1);
+
+    if (logBlock.length === 0){
+        clearLog(logBlock);
+    } else {
+        writeLog(logBlock);
+    }
+
+    if (stepHistory.length === 0){
+        gameTable = BLANK_GAME_TABLE.slice(0);
+    } else {
+        gameTable = stepHistory[stepHistory.length - 1];
+    }
+    draw(gameTable);
+
+    actionPlayer = !actionPlayer;
 };
 
 var isPlayerWin = function (table, player){
@@ -79,6 +97,9 @@ var onPageLoaded = function(){
         }
         gameTable[index] = playerSymbol;
         logBlock.push('<p>Походил игрок игравщий за: ' + playerSymbol + '. В ячейку массива №' + index + '</p>');
+        stepHistory.push(gameTable.slice(0));
+        //stepHistory.push([].concat(gameTable)); ES5 another
+        //stepHistory.push([...gameTable]); ES6
 
         draw(gameTable);
         writeLog(logBlock);
@@ -111,7 +132,6 @@ var onPageLoaded = function(){
     document.getElementsByClassName('stepBack')[0].onclick = function(event){
         event.preventDefault();
         stepBackAndDraw();
-        console.log(logBlock);
     };
 
 };

@@ -109,6 +109,11 @@
     border-bottom: 2px solid darkblue;
 }
 
+.rightMain > p{
+    margin: 5px;
+    font-family:comic Sans Ms;
+}
+
 .rightFooter{
     height:50px;
     padding:20px 0;

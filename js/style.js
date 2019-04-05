@@ -1,12 +1,11 @@
 var BLANK_GAME_TABLE = ['','','','','','','','',''];
+var LOG_GAME_TABLE = [];
 
-var LOG_GAME_TABLE = ['','','','','','','','',''];
-
-// var gameTable = [].concat(BLANK_GAME_TABLE); //массив игрового поля
 var gameTable = BLANK_GAME_TABLE.slice(0);
+var logBlock = LOG_GAME_TABLE.slice(0);
 var actionPlayer = true;
 
-//рисование в блоках
+//РИСОВАНИЕ В БЛОКАХ
 var draw = function(state){
     var gameBlocks = document.getElementsByClassName('gameBlock');
 
@@ -15,10 +14,27 @@ var draw = function(state){
     }
 };
 
+// ЗАПИСЬ ЛОГОВ
+var writeLog = function(){
+    var logBlocks = document.getElementsByClassName('rightMain');
+    console.log(logBlock);
+    for( var i = 0; i < logBlock.length; i++){
+        logBlocks[0].innerHTML = logBlock.join('');
+    }
+};
+
+//ЧИСТКА ЛОГОВ
+var clearLog = function(){
+    var logBlocks = document.getElementsByClassName('rightMain');
+    logBlocks[0].innerHTML = logBlock;
+};
+
+
 var resetAndDrawBoard = function () {
-    gameTable = [].concat(BLANK_GAME_TABLE);
     gameTable = BLANK_GAME_TABLE.slice(0);
+    logBlock = LOG_GAME_TABLE.slice(0); //Чистим поле с логами
     draw(gameTable);
+    clearLog(logBlock);
 
 };
 
@@ -39,11 +55,6 @@ var isGameEnded = function (){
     })
 };
 
-//TODO Записывать ЛОГИ
-var writeLog = function(){
-    var logBlock = document.getElementsByClassName('rightMain');
-
-};
 
 var onPageLoaded = function(){
     //TODO: разобраться с ним
@@ -54,10 +65,20 @@ var onPageLoaded = function(){
         if (gameTable[index] !== ''){
             return alert('Поле уже занято!');
         }
-        var playerSymbol = actionPlayer ? 'X' : 'O';
+
+        var playerSymbol = '';
+        if (actionPlayer){
+            playerSymbol ='X'
+
+        } else {
+            playerSymbol ='O'
+        }
         gameTable[index] = playerSymbol;
+        logBlock.push('<p>Походил игрок игравщий за: ' + playerSymbol + '. В ячейку массива №' + index + '</p>');
+        console.log(logBlock);
 
         draw(gameTable);
+        writeLog(logBlock);
 
         if(isPlayerWin(gameTable, playerSymbol)){
             if (confirm('Победил игрок игравший за: ' + actionPlayer + '. Хотите начать новую игру?')){
@@ -67,7 +88,7 @@ var onPageLoaded = function(){
             }
         }
 
-        // проверка на ничию
+        // ПРОВЕРКА НА НИЧЬЮ
         if (isGameEnded()){ //на true проверять не обязательно
             if (confirm('Ничья, все поля заполнены. Хотите начать новую игру?')){
                 return resetAndDrawBoard();
@@ -81,10 +102,8 @@ var onPageLoaded = function(){
 
     document.getElementsByClassName('resetGame')[0].onclick = function(event){
         event.preventDefault(); //убирает с кнопки стандартное поведение
-        // debugger;
         resetAndDrawBoard();
     };
-
 
 };
 

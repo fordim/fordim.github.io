@@ -17,7 +17,6 @@ var draw = function(state){
 // ЗАПИСЬ ЛОГОВ
 var writeLog = function(){
     var logBlocks = document.getElementsByClassName('rightMain');
-    console.log(logBlock);
     for( var i = 0; i < logBlock.length; i++){
         logBlocks[0].innerHTML = logBlock.join('');
     }
@@ -29,13 +28,18 @@ var clearLog = function(){
     logBlocks[0].innerHTML = logBlock;
 };
 
-
+//ЧИСТКА ДОСОК
 var resetAndDrawBoard = function () {
     gameTable = BLANK_GAME_TABLE.slice(0);
     logBlock = LOG_GAME_TABLE.slice(0); //Чистим поле с логами
     draw(gameTable);
     clearLog(logBlock);
+};
 
+//ОТМЕНЯЕТ ПОСЛЕДНИЙ ХОД
+stepBackAndDraw =function(){
+    logBlock.splice(-1,1);
+    writeLog(logBlock);
 };
 
 var isPlayerWin = function (table, player){
@@ -75,7 +79,6 @@ var onPageLoaded = function(){
         }
         gameTable[index] = playerSymbol;
         logBlock.push('<p>Походил игрок игравщий за: ' + playerSymbol + '. В ячейку массива №' + index + '</p>');
-        console.log(logBlock);
 
         draw(gameTable);
         writeLog(logBlock);
@@ -103,6 +106,12 @@ var onPageLoaded = function(){
     document.getElementsByClassName('resetGame')[0].onclick = function(event){
         event.preventDefault(); //убирает с кнопки стандартное поведение
         resetAndDrawBoard();
+    };
+
+    document.getElementsByClassName('stepBack')[0].onclick = function(event){
+        event.preventDefault();
+        stepBackAndDraw();
+        console.log(logBlock);
     };
 
 };

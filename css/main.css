@@ -3,16 +3,21 @@
 }
 
 .wrapper{
-    width:500px;
+    width:1100px;
     height:500px;
-    margin:0 auto;
-    background-color:white;
-    background-color:lightgrey;
-    border: 2px solid darkblue;
-    margin-top:100px;
+    display:flex;
+    justify-content: space-between;
+    margin:110px auto;
 }
 
-header{
+.leftBlock{
+    width:500px;
+    height:500px;
+    background-color:lightgrey;
+    border: 2px solid darkblue;
+}
+
+.leftHeader{
     height:100px;
     background-color:grey;
     text-align:center;
@@ -22,12 +27,12 @@ header{
     border:3px solid darkblue;
 }
 
-header > p{
-    margin:0px;
+.leftHeader > p{
+    margin:0;
     height:100px;
 }
 
-main{
+.leftMain{
     height:300px;
     border-bottom: 2px solid darkblue;
 }
@@ -52,8 +57,7 @@ main{
     text-align:center;
 }
 
-
-footer{
+.leftFooter{
     height:50px;
     padding:20px 0;
 }
@@ -74,6 +78,59 @@ footer{
 }
 
 .resetGame:hover{
+    background:linear-gradient(rgb(230, 195, 0), rgb(215, 185, 0));
+    color:darkgrey;
+}
+
+.rightBlock{
+    width:500px;
+    height:500px;
+    background-color:white;
+    border: 2px solid darkblue;
+}
+
+.rightHeader{
+    height:100px;
+    background-color:grey;
+    text-align:center;
+    font-family:comic Sans Ms;
+    font-size:65px;
+    color:yellow;
+    border:3px solid darkblue;
+}
+
+.rightHeader > p{
+    margin:0;
+    height:100px;
+}
+
+.rightMain{
+    height:300px;
+    border-bottom: 2px solid darkblue;
+}
+
+.rightFooter{
+    height:50px;
+    padding:20px 0;
+    background-color:lightgrey;
+}
+
+.stepBack{
+    display: block;
+    color: white;
+    width:200px;
+    height:50px;
+    font-family:comic Sans Ms;
+    margin:0 auto;
+
+    border: 1px solid darkblue;
+    border-radius: 5px;
+    background: linear-gradient(rgb(255, 225, 0), rgb(230, 195, 0));
+    font-size:26px;
+    text-align:center;
+}
+
+.stepBack:hover{
     background:linear-gradient(rgb(230, 195, 0), rgb(215, 185, 0));
     color:darkgrey;
 }

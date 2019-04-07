@@ -123,12 +123,13 @@ var onPageLoaded = function(){
         writeLog(logBlock);
 
         if(isPlayerWin(gameTable, playerSymbol)){
-            modalBoxEvent('Победил игрок игравший за: ' + nameOfPlayer() + '. Хотите начать новую игру?')
+            return modalBoxEvent('Победил игрок игравший за: ' + nameOfPlayer() + '. Хотите начать новую игру?')
         }
 
         // ПРОВЕРКА НА НИЧЬЮ
         if (isGameEnded()){ //на true проверять не обязательно
             modalBoxEvent('Ничья, все поля заполнены. Можете начать <<Новую игру>>')
+
         }
 
         actionPlayer = !actionPlayer;

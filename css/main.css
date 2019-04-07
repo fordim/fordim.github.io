@@ -85,7 +85,7 @@
 .rightBlock{
     width:500px;
     height:500px;
-    background-color:white;
+    background-color:lightgrey;
     border: 2px solid darkblue;
 }
 
@@ -107,17 +107,17 @@
 .rightMain{
     height:300px;
     border-bottom: 2px solid darkblue;
+    background-color:white;
 }
 
 .rightMain > p{
-    margin: 5px;
+    margin: 0;
     font-family:comic Sans Ms;
 }
 
 .rightFooter{
-    height:50px;
+    height:52px;
     padding:20px 0;
-    background-color:lightgrey;
 }
 
 .stepBack{
@@ -138,4 +138,62 @@
 .stepBack:hover{
     background:linear-gradient(rgb(230, 195, 0), rgb(215, 185, 0));
     color:darkgrey;
+}
+
+.modalBox{
+    height:200px;
+    width:500px;
+    background-color:white;
+    visibility:hidden;
+    border: 1px solid darkblue;
+    font-size:25px;
+    z-index:5;
+    position:absolute;
+    margin-top:80px;
+    margin-left:300px;
+    font-family:comic Sans Ms;
+    text-align:center;
+}
+
+.modalHeader{
+    height:50px;
+    border: 1px solid darkblue;
+    background-color:grey;
+    color:yellow;
+}
+
+.modalBody{
+    height:100px;
+    border: 1px solid darkblue;
+}
+
+.modalFooter{
+    height:44px;
+    background-color:lightgrey;
+    border: 1px solid darkblue;
+}
+
+.visible{
+    visibility:visible;
+}
+
+#modalResetGame{
+    width:150px;
+    height:30px;
+    font-size:20px;
+    margin-top:6px;
+}
+
+
+/*Блокировка остального сайта*/
+.banBlocks {
+    width:500px;
+    height:500px;
+    opacity: 0.4;
+    z-index: 3;
+}
+
+.banBody {
+    background-image:none;
+    background-color:darkgrey;
 }

@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/style.js"></script>
     </head>
-    <body class="mainPage">
-        <div class="wrapper" id="wrapper">
-            <div class="leftBlock">
+    <body class="mainPage" id="mainPage">
+        <div class="wrapper">
+            <div class="leftBlock" id="leftBlock">
                 <div class="leftHeader">
                     <p>Tic Tac Toe</p>
                 </div>
@@ -45,13 +45,13 @@
                 </div>
                 <div class="leftFooter">
                     <form>
-                        <button class="resetGame">
+                        <button class="resetGame" id="resetGame">
                             Новая игра
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="rightBlock">
+            <div class="rightBlock" id="rightBlock">
                 <div class="rightHeader">
                     <p>Logs</p>
                 </div>
@@ -59,8 +59,23 @@
                 </div>
                 <div class="rightFooter">
                     <form>
-                        <button class="stepBack">
+                        <button class="stepBack" id="stepBack">
                             Шаг назад
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="modalBox hidden" id="modalBox">
+                <div class="modalHeader">
+                    Event:
+                </div>
+                <div class="modalBody">
+
+                </div>
+                <div class="modalFooter">
+                    <form>
+                        <button class="resetGame" id="modalResetGame">
+                            Новая игра
                         </button>
                     </form>
                 </div>

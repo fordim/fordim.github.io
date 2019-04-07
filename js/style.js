@@ -36,13 +36,13 @@ var resetAndDrawBoard = function () {
     logBlock = LOG_GAME_TABLE.slice(0); //Чистим поле с логами
     draw(gameTable);
     clearLog(logBlock);
-    stepHistory.length = 0; //Очистка массива
+    stepHistory = []; //Очистка массива
 };
 
 //ОТМЕНЯЕТ ПОСЛЕДНИЙ ХОД
 stepBackAndDraw = function(){
-    logBlock.splice(-1,1);
-    stepHistory.splice(-1,1);
+    logBlock.pop();
+    stepHistory.pop();
 
     if (logBlock.length === 0){
         clearLog(logBlock);
@@ -55,6 +55,7 @@ stepBackAndDraw = function(){
     } else {
         gameTable = stepHistory[stepHistory.length - 1];
     }
+
     draw(gameTable);
 
     actionPlayer = !actionPlayer;
@@ -77,6 +78,24 @@ var isGameEnded = function (){
     })
 };
 
+var nameOfPlayer = function (){
+  if (actionPlayer){
+      return 'X'
+  }  else {
+      return '0'
+  }
+};
+
+var modalBoxEvent = function (textEvent){
+    document.getElementById('modalBox').classList.add("visible");
+    document.getElementById('leftBlock').classList.add("banBlocks");
+    document.getElementById('rightBlock').classList.add("banBlocks");
+    document.getElementById('mainPage').classList.add("banBody");
+    document.getElementById("stepBack").disabled = true;
+    document.getElementById("resetGame").disabled = true;
+    var modalEvent = document.getElementsByClassName('modalBody');
+    modalEvent[0].innerText = textEvent;
+};
 
 var onPageLoaded = function(){
     //TODO: разобраться с ним
@@ -85,13 +104,12 @@ var onPageLoaded = function(){
         var index = Array.from(e.target.parentElement.children).indexOf(e.target);
 
         if (gameTable[index] !== ''){
-            return alert('Поле уже занято!');
+            return alert('Поле уже занято!')
         }
 
         var playerSymbol = '';
         if (actionPlayer){
             playerSymbol ='X'
-
         } else {
             playerSymbol ='O'
         }
@@ -99,26 +117,18 @@ var onPageLoaded = function(){
         logBlock.push('<p>Походил игрок игравщий за: ' + playerSymbol + '. В ячейку массива №' + index + '</p>');
         stepHistory.push(gameTable.slice(0));
         //stepHistory.push([].concat(gameTable)); ES5 another
-        //stepHistory.push([...gameTable]); ES6
+        //stepHistory.push([...gameTable]); //ES6
 
         draw(gameTable);
         writeLog(logBlock);
 
         if(isPlayerWin(gameTable, playerSymbol)){
-            if (confirm('Победил игрок игравший за: ' + actionPlayer + '. Хотите начать новую игру?')){
-                return resetAndDrawBoard();
-            } else {
-                return console.log('Игрок отказался начать новую игру');
-            }
+            modalBoxEvent('Победил игрок игравший за: ' + nameOfPlayer() + '. Хотите начать новую игру?')
         }
 
         // ПРОВЕРКА НА НИЧЬЮ
         if (isGameEnded()){ //на true проверять не обязательно
-            if (confirm('Ничья, все поля заполнены. Хотите начать новую игру?')){
-                return resetAndDrawBoard();
-            } else {
-                return console.log('Игрок отказался начать новую игру');
-            }
+            modalBoxEvent('Ничья, все поля заполнены. Можете начать <<Новую игру>>')
         }
 
         actionPlayer = !actionPlayer;
@@ -132,6 +142,17 @@ var onPageLoaded = function(){
     document.getElementsByClassName('stepBack')[0].onclick = function(event){
         event.preventDefault();
         stepBackAndDraw();
+    };
+
+    document.getElementById('modalResetGame').onclick = function(event){
+        event.preventDefault();
+        resetAndDrawBoard();
+        document.getElementById('modalBox').classList.remove("visible");
+        document.getElementById('leftBlock').classList.remove("banBlocks");
+        document.getElementById('rightBlock').classList.remove("banBlocks");
+        document.getElementById('mainPage').classList.remove("banBody");
+        document.getElementById("stepBack").disabled = false;
+        document.getElementById("resetGame").disabled = false;
     };
 
 };

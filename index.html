@@ -1,85 +1,61 @@
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Tic-Tac-Toe</title>
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/style.js"></script>
-    </head>
-    <body class="mainPage" id="mainPage">
-        <div class="wrapper">
-            <div class="leftBlock" id="leftBlock">
-                <div class="leftHeader">
-                    <p>Tic Tac Toe</p>
-                </div>
-                <div class="leftMain">
-                    <div class="gameBlocks" id="gameBlocks">
-                            <div class="gameBlock">
-                                T
-                            </div>
-                            <div class ="gameBlock">
-                                I
-                            </div>
-                            <div class ="gameBlock">
-                                C
-                            </div>
-                            <div class ="gameBlock">
-                                T
-                            </div>
-                            <div class ="gameBlock">
-                                A
-                            </div>
-                            <div class ="gameBlock">
-                                C
-                            </div>
-                            <div class ="gameBlock">
-                                T
-                            </div>
-                            <div class ="gameBlock">
-                                O
-                            </div>
-                            <div class ="gameBlock">
-                                E
-                            </div>
-                    </div>
-                </div>
-                <div class="leftFooter">
-                    <form>
-                        <button class="resetGame" id="resetGame">
-                            Новая игра
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="rightBlock" id="rightBlock">
-                <div class="rightHeader">
-                    <p>Logs</p>
-                </div>
-                <div class="rightMain">
-                </div>
-                <div class="rightFooter">
-                    <form>
-                        <button class="stepBack" id="stepBack">
-                            Шаг назад
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="modalBox hidden" id="modalBox">
-                <div class="modalHeader">
-                    Event:
-                </div>
-                <div class="modalBody">
-
-                </div>
-                <div class="modalFooter">
-                    <form>
-                        <button class="resetGame" id="modalResetGame">
-                            Новая игра
-                        </button>
-                    </form>
-                </div>
-            </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Loop 1 - Step 1</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js"></script>
+</head>
+<body class="mainPage" id="mainPage">
+  <div class="wrapper" id="wrapper">
+    <div class="modalOverlay" id="modalOverlay">
+      <div class="modalWindow" id="modalWindow">
+        <img src="img/cross.svg" class="closeModal" id="closeModal">
+        <span class="modalTitle">Confirmation</span>
+        <div class="modalItem" id="modalItem"></div>
+        <form class="form">
+          <button class="button confirm" type="submit">Confirm and pay</button>
+        </form>
+      </div>
+    </div>
+    <main class="services">
+      <div class="servicesItems servicesItemsHover">
+        <div class="img mobile"></div>
+        <h2>MOBILE</h2>
+        <p class="description">Get notifications about new releases in our mobile app.</p>
+        <div class="price">
+          <sup class="priceSup">$</sup>
+          <span class="priceCost">10</span>
+          <span class="pMonth">/ month</span>
         </div>
-    </body>
+      </div>
+      <div class="servicesItems servicesItemsHover">
+        <div class="img desktop"></div>
+        <h2>DESKTOP</h2>
+        <p class="description">Enjoy new episodes on your laptop in browser with our web service, which supports all the platforms.</p>
+        <div class="price">
+          <sup class="priceSup">$</sup>
+          <span class="priceCost">15</span>
+          <span class="pMonth">/ month</span>
+        </div>
+      </div>
+      <div class="servicesItems servicesItemsHover">
+        <div class="img tv"></div>
+        <h2>TV</h2>
+        <p class="description">Watch your favorite series at home on large screen with our TV application.</p>
+        <div class="price">
+          <sup class="priceSup">$</sup>
+          <span class="priceCost">20</span>
+          <span class="priceMonth">/ month</span>
+        </div>
+      </div>
+    </main>
+    <form class="form">
+      <button class="button giveFeedback" type="submit">Give feedback</button>
+    </form>
+  </div>
+</body>
 </html>
